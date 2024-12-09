@@ -1,55 +1,85 @@
 
-# Predicción de Consumo Energético
+# PREDICCIÓN DE CONSUMO ENERGÉTICO
 
-Este proyecto utiliza un modelo de aprendizaje automático basado en **Random Forest** para predecir el consumo energético de una comunidad a partir de datos históricos y factores climáticos.
+Este proyecto implementa un sistema de predicción del consumo energético utilizando modelos de aprendizaje automático integrados en una aplicación web desarrollada con **Flask**. La solución permite cargar datos históricos, realizar predicciones basadas en entradas del usuario, y visualizar resultados en gráficos interactivos.
 
-## Contenido del Repositorio
-- `modelo_consumo_energetico.pkl`: Modelo entrenado para realizar predicciones.
-- `escalador_consumo_energetico.pkl`: Escalador para normalizar los datos de entrada.
-- `prediccion_consumo.py`: Script para cargar el modelo, procesar datos y realizar predicciones.
-- `Granja_Solar_2023_2024.xlsx`: Datos de ejemplo utilizados para entrenar y evaluar el modelo.
+---
 
-## Requisitos Previos
-1. **Python 3.7 o superior**.
-2. Instalar las bibliotecas necesarias:
+## 🚀 Características principales
+
+- **Predicción basada en IA**: Utiliza un modelo de aprendizaje automático entrenado para prever el consumo energético diario.
+- **Visualización de datos históricos y predicciones**: Genera gráficos estilizados para interpretar fácilmente los resultados.
+- **Interfaz web intuitiva**: Facilita la interacción del usuario mediante formularios y visualizaciones.
+- **Personalización**: El sistema puede adaptarse a diferentes tipos de datos energéticos según las necesidades.
+
+---
+
+## 🛠️ Instrucciones de instalación
+
+Sigue los pasos a continuación para configurar y ejecutar el proyecto en tu entorno local:
+
+### 1️⃣ Requisitos previos
+- **Python 3.7 o superior**: Asegúrate de tener Python instalado. Verifica tu versión con:
+  ```bash
+  python --version
+  ```
+- **Pip**: Instalador de paquetes incluido con Python.
+- **Visual Studio Code (VSC)** u otro editor de texto: Para abrir y trabajar con el proyecto.
+
+### 2️⃣ Pasos para configurar el entorno
+
+1. **Clonar el repositorio**:
    ```bash
-   pip install pandas scikit-learn joblib
+   git clone https://github.com/adolfobotero/proyecto_ia_consumo.git
+   cd proyecto_ia_consumo
    ```
+2. **Abrir proyecto**
+   Abrir el proyecto con visual studio code.
 
-## Cómo Usar
-1. Descarga o clona el repositorio:
+3. **Instalar dependencias**:
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   cd <NOMBRE_DEL_REPOSITORIO>
+   pip install -r requirements.txt
    ```
+4. **Verificar los archivos necesarios**:
+   Asegúrate de que los siguientes archivos estén en el directorio raíz:
+   - `modelo_consumo_energetico.pkl`: Modelo entrenado.
+   - `escalador_consumo_energetico.pkl`: Escalador de datos.
 
-2. Coloca los archivos de modelo (`.pkl`) y los datos en el mismo directorio que el script.
-
-3. Ejecuta el script de predicción:
+5. **Ejecutar la aplicación**:
    ```bash
-   python prediccion_consumo.py
+   python app.py
    ```
 
-4. Modifica los datos de entrada en el script `prediccion_consumo.py` para adaptarlos a tus necesidades. Por ejemplo:
-   ```python
-   datos_ejemplo = [25.0, 70.0, 300.0, 1, 1, 15]  # Cambia estos valores con tus datos reales
-   ```
+6. **Abrir en el navegador**:
+   Visita [http://127.0.0.1:5000/](http://127.0.0.1:5000/) para usar la aplicación.
 
-## Estructura de los Datos
-El modelo requiere las siguientes columnas como entrada:
-- **Temperatura**: Temperatura promedio diaria (°C).
-- **Humedad**: Humedad promedio diaria (%).
-- **Consumo_Previo**: Consumo energético del día anterior (kWh).
-- **Uso_Renovable**: Indicador binario (0: No, 1: Sí) para el uso de energía renovable.
-- **Mes**: Mes del año (1-12).
-- **Día**: Día del mes (1-31).
+---
 
-## Notas Técnicas
-- El modelo se entrenó con datos simulados de una granja solar en Colombia, correspondientes a los años 2023 y 2024.
-- El rendimiento del modelo se evaluó utilizando el Error Cuadrático Medio (MSE).
+## ⚙️ Funcionalidades del sistema
 
-## Contribuciones
-Las contribuciones son bienvenidas. Si encuentras un error o deseas mejorar el proyecto, envía un pull request.
+### **Cargar datos históricos**
+- **Formato esperado**: Archivo Excel con las siguientes columnas:
+  - `Fecha`: En formato `YYYY-MM-DD`.
+  - `Consumo`: Consumo energético diario en kWh.
+- Una vez cargados, se generará un gráfico con el historial de consumo.
 
-## Licencia
-Este proyecto se distribuye bajo la licencia MIT.
+### **Predicción del consumo**
+- Ingresa los siguientes datos en el formulario:
+  - **Temperatura**: Promedio diario en grados Celsius (ejemplo: 25).
+  - **Humedad**: Promedio diario en porcentaje (ejemplo: 70).
+  - **Consumo Previo**: Consumo energético del día anterior en kWh (ejemplo: 300).
+  - **Uso Renovable**: `0` (sin renovables) o `1` (con renovables).
+  - **Mes**: Número del mes (1 a 12).
+  - **Día**: Día del mes (1 a 31).
+- La predicción se mostrará junto con un gráfico que incluye los datos históricos y el valor predicho.
+
+---
+
+## 🧩 Integrantes del proyecto
+
+- [Luis Adolfo Botero López]
+
+---
+
+## 🎓 Talento TECH
+Este proyecto fue desarrollado como parte del programa de **Talento Tech**.
