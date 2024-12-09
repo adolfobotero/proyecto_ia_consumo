@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicción de Consumo Energético</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Predicción de Consumo Energético</h1>
+        
+        <div class="alert alert-info" role="alert">
+            <h5>Instrucciones Generales</h5>
+            <p>Este sistema predice el consumo energético en función de datos históricos y condiciones específicas ingresadas por el usuario. Sigue estos pasos:</p>
+            <ol>
+                <li>
+                    <strong>Cargar datos históricos:</strong>
+                    <ul>
+                        <li>Sube un archivo Excel con las siguientes columnas:
+                            <ul>
+                                <li><code>Fecha</code>: La fecha en formato <strong>YYYY-MM-DD</strong>.</li>
+                                <li><code>Consumo</code>: El consumo energético en kWh.</li>
+                            </ul>
+                        </li>
+                        <li>Estos datos se utilizarán para generar un gráfico histórico del consumo energético.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Realizar predicción:</strong>
+                    <ul>
+                        <li>Llena el formulario con los datos requeridos:</li>
+                        <ul>
+                            <li><strong>Temperatura:</strong> Temperatura promedio del día en grados Celsius (ejemplo: 25).</li>
+                            <li><strong>Humedad:</strong> Humedad promedio del día en porcentaje (ejemplo: 70).</li>
+                            <li><strong>Consumo Previo:</strong> Consumo energético del día anterior en kWh (ejemplo: 300).</li>
+                            <li><strong>Uso Renovable:</strong> Indica si se usaron energías renovables:
+                                <ul>
+                                    <li><code>0</code>: No se usaron energías renovables.</li>
+                                    <li><code>1</code>: Se usaron energías renovables.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Mes:</strong> Número del mes (1 a 12, ejemplo: 1 para enero).</li>
+                            <li><strong>Día:</strong> Número del día del mes (1 a 31, ejemplo: 15).</li>
+                        </ul>
+                        <li>El sistema generará una predicción y un gráfico combinando los datos históricos y el valor predicho.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Cargar Datos Históricos -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Cargar Datos Históricos</h5>
+                <form action="/datos" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="file" class="form-label">Selecciona un archivo Excel:</label>
+                        <input type="file" name="file" class="form-control" accept=".xlsx" required>
+                        <div class="form-text">Debe contener las columnas <code>Fecha</code> y <code>Consumo</code>.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cargar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Formulario de Predicción -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Ingresar Datos para Predicción</h5>
+                <form action="/predecir" method="POST">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="temperatura" class="form-label">Temperatura (°C):</label>
+                            <input type="text" name="temperatura" class="form-control" placeholder="Ejemplo: 25" required>
+                            <div class="form-text">Ingresa la temperatura promedio del día.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="humedad" class="form-label">Humedad (%):</label>
+                            <input type="text" name="humedad" class="form-control" placeholder="Ejemplo: 70" required>
+                            <div class="form-text">Ingresa la humedad promedio del día.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="consumo_previo" class="form-label">Consumo Previo (kWh):</label>
+                            <input type="text" name="consumo_previo" class="form-control" placeholder="Ejemplo: 300" required>
+                            <div class="form-text">Ingresa el consumo energético del día anterior.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="uso_renovable" class="form-label">Uso Renovable (0 o 1):</label>
+                            <input type="text" name="uso_renovable" class="form-control" placeholder="Ejemplo: 1" required>
+                            <div class="form-text">Indica si se usaron energías renovables (0 = No, 1 = Sí).</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="mes" class="form-label">Mes:</label>
+                            <input type="text" name="mes" class="form-control" placeholder="Ejemplo: 1" required>
+                            <div class="form-text">Ingresa el número del mes (1 = enero).</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="dia" class="form-label">Día:</label>
+                            <input type="text" name="dia" class="form-control" placeholder="Ejemplo: 15" required>
+                            <div class="form-text">Ingresa el número del día del mes.</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success mt-3">Predecir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
